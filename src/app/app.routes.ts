@@ -1,13 +1,6 @@
 import { Routes } from '@angular/router';
 //1. Importar todos nuestros componentes pagina
 
-import { Home } from './pages/home/home';
-import { Admin } from './pages/admin/admin';
-import { Login } from './pages/login/login';
-import { Register } from './pages/register/register';
-import { Products } from './pages/products/products';
-import { Details } from './pages/details/details';
-import { NotFound } from './pages/not-found/not-found';
 
 import { Home } from './pages/home/home';
 import { Abaut } from './pages/abaut/abaut';
@@ -18,6 +11,7 @@ import { Hibrida } from './pages/hibrida/hibrida';
 import { NotFound } from './pages/not-found/not-found';
 import { Register } from './pages/register/register';
 import { Usuario } from './pages/usuario/usuario';
+import { Details } from './pages/details/details';
 
 export const routes: Routes = [
     {path: '', component: Home, title: 'Motoversus' },
@@ -26,6 +20,7 @@ export const routes: Routes = [
     {path: 'deportivas', component: Deportivas, title: 'Deportivas' },
     {path: 'enduro', component: Enduro, title: 'Enduro' },
     {path: 'hibrida', component: Hibrida, title: 'Hibrida' },
+    {path: 'details/:id', component: Details, title: 'Product Details'},
     {path: 'register', component: Register, title: 'Register' },
     {path: 'usuario', component: Usuario, title: 'Usuario' },
     {path: '**', component: NotFound, title: '404' }
