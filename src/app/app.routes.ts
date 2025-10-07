@@ -1,4 +1,13 @@
 import { Routes } from '@angular/router';
+//1. Importar todos nuestros componentes pagina
+
+import { Home } from './pages/home/home';
+import { Admin } from './pages/admin/admin';
+import { Login } from './pages/login/login';
+import { Register } from './pages/register/register';
+import { Products } from './pages/products/products';
+import { Details } from './pages/details/details';
+import { NotFound } from './pages/not-found/not-found';
 
 import { Home } from './pages/home/home';
 import { Abaut } from './pages/abaut/abaut';
