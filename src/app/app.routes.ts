@@ -1,9 +1,7 @@
 import { Routes } from '@angular/router';
 //1. Importar todos nuestros componentes pagina
-
-
 import { Home } from './pages/home/home';
-import { Abaut } from './pages/abaut/abaut';
+import { About } from './pages/about/about';
 import { Admin } from './pages/admin/admin';
 import { Deportivas } from './pages/deportivas/deportivas';
 import { Enduro } from './pages/enduro/enduro';
@@ -15,7 +13,7 @@ import { Details } from './pages/details/details';
 
 export const routes: Routes = [
     {path: '', component: Home, title: 'Motoversus' },
-    {path: 'abaut', component: Abaut, title: 'Abaut' },
+    {path: 'about', component: About, title: 'About' },
     {path: 'admin', component: Admin, title: 'Admin' },
     {path: 'deportivas', component: Deportivas, title: 'Deportivas' },
     {path: 'enduro', component: Enduro, title: 'Enduro' },
