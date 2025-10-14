@@ -1,0 +1,20 @@
+<!-- Solo muestra si existe el usuario -->
+<div *ngIf="user as usuario; else cargando" class="card text-center shadow border-0 card-hover bg-dark text-white" style="width: 24rem;">
+  <img [src]="baseUrl + usuario.fotoPerfil"
+       class="card-img-top rounded-circle mx-auto mt-3 avatar-img"
+       alt="{{ usuario.nombre + ' ' + usuario.apellido }}"
+       style="width:110px; height:110px; object-fit:cover; border: 3px solid #fff; box-shadow: 0 0 10px rgba(0,0,0,0.10);">
+  <div class="card-body p-4">
+    <h5 class="card-title mb-1">{{ usuario.nombre }} {{ usuario.apellido }}</h5>
+    <h6 class="card-subtitle mb-3 text-info">Usuario: {{ usuario.user }}</h6>
+    <p class="card-text text-secondary mb-2" style="font-size:1rem;">
+      Correo: {{ usuario.correo }} <br>
+      Teléfono: {{ usuario.numero }}
+    </p>
+  </div>
+</div>
+<ng-template #cargando>
+  <div class="text-center mt-4 text-muted">
+    Cargando información del usuario...
+  </div>
+</ng-template>

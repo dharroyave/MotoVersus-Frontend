@@ -14,21 +14,26 @@ export class UserService {
 
   //peticion post
   postUser(userToCreate: User) {
-    return this._httpClient.post(`${this.apiUrl}/users`, userToCreate);
+    return this._httpClient.post(`${this.apiUrl}/users/crear`, userToCreate);
   }
 
   //peticion get
   getUser() {
-    return this._httpClient.get(`${this.apiUrl}/users`);
+    return this._httpClient.get(`${this.apiUrl}/users/mostrar`);
+  }
+
+  //peticion get by id
+  getUserById(id: string) {
+    return this._httpClient.get(`${this.apiUrl}/users/mostrar/${id}`);
   }
 
   // peticion put
   putUser(userToUpdate: User, id: string) {
-    return this._httpClient.put(`${this.apiUrl}/users/${id}`, userToUpdate);
+    return this._httpClient.put(`${this.apiUrl}/users/actualizar/${id}`, userToUpdate);
   }
 
   // peticion delete
   deleteUser(id: string) {
-    return this._httpClient.delete(`${this.apiUrl}/users/${id}`);
+    return this._httpClient.delete(`${this.apiUrl}/users/eliminar/${id}`);
   }
 }
