@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ProductService } from '../../services/products';
 import { Products } from '../../interfaces/productservice';
+import { environment } from '../../../environments/environment';
 
 
 
@@ -10,31 +11,36 @@ import { Products } from '../../interfaces/productservice';
   templateUrl: './card.html',
   styleUrl: './card.css'
 })
+
+
 export class Card implements OnInit {
+  // 1. la inyección de dependencias y declaración de variables
+  _productService = inject(ProductService);
+  // variable
+  allProducts : Products[] = []; //vamos a almacenar todos los productos de la base de datos
+  baseUrl : string = environment.appUrl;
 
-  //1 inyeccion de dependencias y declaracion de variable 
-_productService = inject(ProductService);
-
-//2 crear una variable para almacenar los productos
-allproducts : Products[] = [] //vamos almacenar los productos
-
-showProducts(){
- this._productService.getProduct().subscribe({
-  //3 capturar el error
-  next: (response: any) => {
-    this.allproducts = response; 
-    console.log(this.allproducts);
-  },
-  error: (error: any) => {
-    console.error(error);
+  showProducts(){
+    //1. voy a hacer la peticion get
+    //2. voy a guardar los productos en mi variable all products
+    //3. voy a mostrarlos en mi navegador
+    this._productService.getProduct().subscribe({
+      // manejo de errores -> gestion de respuestas del back
+      next:(response : any)=>{
+        this.allProducts = response.data;
+        console.log(this.allProducts);
+      }, //respuestas positivas del back
+      error: (error : any)=>{
+        console.error(error);
+      } //respuestas de error del back
+    })
   }
 
- }
- )
-}
 
-ngOnInit(): void {
-  this.showProducts();
-}
+  ngOnInit(): void {
+      // ejecute una accion al cargarse por primera vez en el navegador
+      this.showProducts();
+  }
+
 
 }
