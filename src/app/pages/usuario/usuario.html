@@ -1,15 +1,17 @@
 <header>
-  <!-- 2. usar el componente reutilizable con su selector -->
-  <!-- <app-navbar></app-navbar> -->
+    <!-- 2. usar el componente reutilizable con su selector -->
+    <!-- <app-navbar></app-navbar> -->
 </header>
 
 <!-- Main -->
-<main>
+<main class="min-vh-50 d-flex justify-content-center align-items-center my-5 flex-column gap-3 ">
+    <div class="text-center ">
+        <app-user [usuarioId]="'68bf8d173773f1c201c83397'">
+        </app-user>
 
-<app-user
-[usuarioId]="'68bf8d173773f1c201c83397'">
-</app-user>
+    </div>
 
+    <h1>Comentarios</h1>
 </main>
 <!-- Footer -->
 <footer></footer>

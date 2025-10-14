@@ -1,7 +1,7 @@
 <!-- Solo muestra si existe el usuario -->
-<div *ngIf="user as usuario; else cargando" class="card text-center shadow border-0 card-hover bg-dark text-white" style="width: 24rem;">
+<div *ngIf="user as usuario; else cargando" class=" text-center shadow card-hover bg-dark text-white card-personalizada border-0" style="width: 24rem;">
   <img [src]="baseUrl + usuario.fotoPerfil"
-       class="card-img-top rounded-circle mx-auto mt-3 avatar-img"
+       class="card-img-top rounded-circle mx-auto mt-3 avatar-img img-tamano "
        alt="{{ usuario.nombre + ' ' + usuario.apellido }}"
        style="width:110px; height:110px; object-fit:cover; border: 3px solid #fff; box-shadow: 0 0 10px rgba(0,0,0,0.10);">
   <div class="card-body p-4">
@@ -14,7 +14,8 @@
   </div>
 </div>
 <ng-template #cargando>
-  <div class="text-center mt-4 text-muted">
+  <div class="text-center mt-4 text-muted border-0 card">
     Cargando información del usuario...
   </div>
+  
 </ng-template>
