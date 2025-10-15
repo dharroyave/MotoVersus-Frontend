@@ -12,6 +12,12 @@
     
 }
 
+footer {
+  background-color: black;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
 
 .footer-links a{
   color: var(--color-enfasis2);
@@ -37,6 +43,7 @@
   text-align: center;
   padding: 20px 10px;
   font-family: var(--texto-secundario);
+  background-color: var(--color-enfasis1);
   
   
-}
+}   
