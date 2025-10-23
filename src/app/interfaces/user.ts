@@ -6,4 +6,5 @@ export interface User {
   correo: string;
   numero: number;
   fotoPerfil: string;
+  role: string;
 }
