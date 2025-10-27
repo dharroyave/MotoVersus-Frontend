@@ -52,4 +52,8 @@ export class LoginService {
     alert('Sesión Cerrada con Exito, Vuelve pronto!')
     this._router.navigate(['/login']);
   }
+
+  isloggedIn(){
+    return this.getToken() ? true : false;
+  }  
 }
