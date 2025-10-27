@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg color-bg-nav">
     <div class="container-fluid ">
-        <a class="navbar-brand color-Letter" routerLink="/"><img class="logo" src = "/public/assets/logo.png" alt="logo"></a>
+        <a class="navbar-brand color-Letter" routerLink="/"><img class="logo" src = {{logoUrl}} alt="logo"></a>
         <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -35,7 +35,7 @@
                     </ul>
                 </li>
 
-                <li class="nav-item">
+                <li  *ngIf="isvisible" class="nav-item">
                     <a class="nav-link active color-Letter" aria-current="page" routerLink="/admin">Administración</a>
                 </li>
                 <li class="nav-item">
