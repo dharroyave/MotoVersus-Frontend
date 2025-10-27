@@ -52,4 +52,13 @@ export class LoginService {
     alert('Sesión Cerrada con Exito, Vuelve pronto!')
     this._router.navigate(['/login']);
   }
+
+  
+  // 6. para saber si se inició sesión o no
+  isLoggedIn(){
+    return this.getToken() ? true : false;
+  }//si no hay token, no esta logueado, si sí lo hay, entonces sí inició sesión
+
+  
 }
+
