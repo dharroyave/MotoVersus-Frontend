@@ -29,6 +29,7 @@ export class Register {
   handleSubmit() {
 
     const userData: User = {
+      _id: '',
       nombre: this.registerForm.value.nombre || '',         
       apellido: this.registerForm.value.apellido || '',    
       user: this.registerForm.value.user || '',    

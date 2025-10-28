@@ -18,7 +18,7 @@ export class Navbar implements OnInit {
   private _loginService = inject(LoginService);
 
   get isvisible(): boolean {
-    return this._loginService.isloggedIn() && this._loginService.isAdmin();
+    return this._loginService.isLoggedIn() && this._loginService.isAdmin();
   }
 
   ngOnInit() {
