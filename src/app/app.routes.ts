@@ -11,9 +11,25 @@ import { Register } from './pages/register/register';
 import { Usuario } from './pages/usuario/usuario';
 import { Details } from './pages/details/details';
 import { Login } from './pages/login/login';
+import { Users } from './pages/admin/users/users';
+import { Inventory } from './pages/admin/inventory/inventory';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
     { path: '', component: Home, title: 'Motoversus' },
+
+    {
+        path: 'dashboard', // path: 'admin' -> ruta principal
+        component: Admin,
+        title: 'Dashboard',
+        canActivate: [authGuard],
+        canActivateChild: [authGuard], //Proteger rutas hijas
+        children: [
+            {path: '', component: Users},
+            {path: 'inventory', component: Inventory} //title es opcional
+        ]
+    },
+
     { path: 'about', component: About, title: 'About' },
     { path: 'admin', component: Admin, title: 'Admin' },
     { path: 'deportivas', component: Deportivas, title: 'Deportivas' },
