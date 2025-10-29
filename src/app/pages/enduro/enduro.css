@@ -1,10 +1,15 @@
-.banner{
+.banner {
     width: 100vw;
-    height: 50vh;
-    background-color: grey;
+    height: 40vh;
+    overflow: hidden;
+    background-color: #808080;
 }
 
-.productos{
-width: 100vw;
-height: 60vh;
+.banner img {
+    width: 100vw;
+    height: 40vh;
+    
+    /* object-fit: cover; */
+    /* object-position: center;
+    display: block; */
 }
