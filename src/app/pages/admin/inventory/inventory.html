@@ -4,7 +4,6 @@
   @for (product of allProducts; track $index) {
   <div>
     <h2 class="fa-bold">{{ product.nombre }}</h2>
-    <p>{{ product.descripcion }}</p>
     <p>{{ product.categoria }}</p>
 
       <button class="btn btn-info" (click)="updateProductsInfo(product._id)">Actualizar</button>
