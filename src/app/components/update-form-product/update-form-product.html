@@ -85,15 +85,24 @@
     </div>
 
     <div class="mb-3">
-      <label for="imagenUrl" class="form-label">URL de la Imagen</label>
-      <input 
-        type="text" 
-        class="form-control"
-        id="imagenUrl"
-        formControlName="photo"
-      >
+  <label for="imagenUrl" class="form-label">Imagen del producto</label>
+  <input 
+    type="file"
+    class="form-control"
+    id="imagenUrl"
+    (change)="onFileSelected($event)"
+    accept="image/*"
+  >
 
-    </div>
+  <!-- Vista previa de la imagen -->
+  @if (previewUrl) {
+  <div class="mt-3">
+    <p>Vista previa:</p>
+    <img [src]="previewUrl" alt="Vista previa de la imagen" class="img-fluid">
+  </div>
+  }
+</div>  
+
 
     <div class="mb-3">
       <label for="categoria" class="form-label">Categoría</label>

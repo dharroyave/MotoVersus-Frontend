@@ -34,8 +34,8 @@ export class ProductService {
     }
 
   // peticion put
-  putProduct(productToUpdate: Product, id: string) {
-    return this._httpClient.put(`${this.apiUrl}/products/actualizar/${id}`, productToUpdate);
+  putProduct(productToUpdate: Product | FormData, id: string) {
+  return this._httpClient.put(`${this.apiUrl}/products/actualizar/${id}`, productToUpdate);
   }
 
   // peticion delete
