@@ -1,5 +1,24 @@
-.containerprincipal{
-    width: 100vh;
+.containerprincipal {
+  width: 90vh;
+  max-width: 1200px;
+  margin: 0 auto; 
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 601px) and (max-width: 1199px) {
+  .containerprincipal {
+    width: 60vh;
+    max-width: 1024px; /* ancho adaptado a dispositivos medianos */
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .containerprincipal {
+    width: 100%;
+    padding: 0 10px;
+  }
 }
 
 .btn-dark {
