@@ -33,6 +33,14 @@ export class ProductService {
       return this._httpClient.get(`${this.apiUrl}/products/mostrar/${id}`, { headers });
     }
 
+    // peticion get por categoria
+      getProductByCategory(category: string) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._httpClient.get(`${this.apiUrl}/products/mostrar/${category}`, { headers });
+  }
+
+
   // peticion put
   putProduct(productToUpdate: Product | FormData, id: string) {
   return this._httpClient.put(`${this.apiUrl}/products/actualizar/${id}`, productToUpdate);
