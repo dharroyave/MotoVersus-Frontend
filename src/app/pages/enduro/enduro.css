@@ -1,15 +1,16 @@
 .banner {
     width: 100vw;
-    height: 40vh;
+    height: 50vh;
     overflow: hidden;
-    background-color: #808080;
-}
+    position: relative;}
 
 .banner img {
     width: 100vw;
     height: 40vh;
-    
-    /* object-fit: cover; */
+    display: block;
+    object-fit: cover;
+    /* object-fit: contain;
+    /* object-fit: cover;  */
     /* object-position: center;
     display: block; */
 }
