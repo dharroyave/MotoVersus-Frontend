@@ -59,9 +59,16 @@ export class Inventory implements OnInit {
     });
   }
 
-  updateProductsInfo(id: string) {
-    console.log('ID del producto seleccionado:', id);
-   this.selectedProductId = id;
-   this.showUpdateForm = true;
-  } 
+  updateProductsInfo(productId: string) {
+    if (this.showUpdateForm && this.selectedProductId === productId) {
+    this.showUpdateForm = false;
+    this.selectedProductId = null;
+    return;
+  }
+
+  // 🟢 Si es otro producto o estaba cerrado, lo abre
+  this.showUpdateForm = true;
+  this.selectedProductId = productId;
+}
+
 }
