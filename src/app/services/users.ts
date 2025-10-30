@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../interfaces/user';
 import { environment } from '../../environments/environment';
 
@@ -13,22 +13,27 @@ export class UserService {
   // metodos para hacer las peticiones a la api
 
   //peticion post
-  postUser(userToCreate: User) {
+  postUser(userToCreate: FormData) {
     return this._httpClient.post(`${this.apiUrl}/users/crear`, userToCreate);
   }
 
   //peticion get
-  getUser() {
-    return this._httpClient.get(`${this.apiUrl}/users/mostrar`);
+   getUser() {
+    const token = localStorage.getItem('token'); // o sessionStorage si lo guardas ahí
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._httpClient.get(`${this.apiUrl}/users/mostrar`, { headers });
   }
 
   //peticion get by id
-  getUserById(id: string) {
-    return this._httpClient.get(`${this.apiUrl}/users/mostrar/${id}`);
+ getUserById(id: string) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._httpClient.get(`${this.apiUrl}/users/mostrar/${id}`, { headers });
   }
 
+
   // peticion put
-  putUser(userToUpdate: User, id: string) {
+  putUser(userToUpdate: FormData, id: string) {
     return this._httpClient.put(`${this.apiUrl}/users/actualizar/${id}`, userToUpdate);
   }
 
@@ -36,4 +41,5 @@ export class UserService {
   deleteUser(id: string) {
     return this._httpClient.delete(`${this.apiUrl}/users/eliminar/${id}`);
   }
+
 }

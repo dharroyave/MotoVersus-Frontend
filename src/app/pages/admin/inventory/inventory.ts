@@ -2,10 +2,12 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ProductService } from '../../../services/products';
 import { Product } from '../../../interfaces/product';
 import Swal from 'sweetalert2';
+import {UpdateFormProduct} from '../../../components/update-form-product/update-form-product';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-inventory',
-  imports: [],
+  imports: [UpdateFormProduct, CommonModule],
   templateUrl: './inventory.html',
   styleUrl: './inventory.css',
 })
@@ -15,6 +17,12 @@ export class Inventory implements OnInit {
 
   // 2. formgroups y formcontrols que necesite
   // ...
+  selectedProductId: string | null = null;
+  showUpdateForm = false;
+
+  ngOnInit(): void {
+    this.showProducts();
+  }
 
   // 3. metodos que permiten hacer las peticiones y gestionar las respuestas
   showProducts() {
@@ -52,12 +60,8 @@ export class Inventory implements OnInit {
   }
 
   updateProductsInfo(id: string) {
-    // Hace la peticón PUT
-    // ... tomar como referencia el registro de usuarios
-    console.log('Producto a editar: ', id);
-  }
-
-  ngOnInit(): void {
-    this.showProducts();
-  }
+    console.log('ID del producto seleccionado:', id);
+   this.selectedProductId = id;
+   this.showUpdateForm = true;
+  } 
 }

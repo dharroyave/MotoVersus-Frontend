@@ -1,66 +1,24 @@
-<div id="bet" class="row align-items-center mb-5 filterable-item">
-  <figure
-    id="motoCarouselbet"
-    class="carousel slide moto-carrusel col-md-6 order-md-2 mt-3 mt-md-0"
-    data-bs-ride="carousel"
-  >
-    <div class="carousel-inner contenedor">
-      <div class="carousel-item active">
-        <img
-          src="../assets/Deportivas/HONDA1_500.png"
-          class="d-block moto-img moto1-img motosinfo"
-          alt="Moto BET ABS Gris Nardo"
-        />
+<section class="row align-content-center">
+  @for (item of allProducts; track $index) {
+
+  <div class="card mb-3" style="max-width: 4000px">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img [src]="baseUrl + item.imagenUrl" class="img-fluid rounded-start" alt="..." />
       </div>
-      <div class="carousel-item">
-        <img
-          src="../assets/Deportivas/HONDA2_500.png"
-          class="d-block moto-img moto1-img motosinfo"
-          alt="Moto BET ABS Negro Mate"
-        />
-      </div>
-      <div class="carousel-item">
-        <img
-          src="../assets/Deportivas/HONDA3_500.png"
-          class="d-block moto-img moto1-img motosinfo"
-          alt="Moto BET ABS Negro Mate"
-        />
-      </div>
-      <div class="carousel-item">
-        <img
-          src="../assets/Deportivas/Honda_CBR500R.PNG"
-          class="d-block moto-img moto1-img motosinfo"
-          alt="Moto BET ABS Negro Mate"
-        />
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ item.nombre }}</h5>
+          <p class="card-text">{{ item.descripcion }}</p>
+          <p class="card-text">{{ item.potencia }}</p>
+          <p class="card-text">{{ item.motor }}</p>
+          <p class="card-text">{{ item.cilindraje }}</p>
+          <p class="card-text">{{ item.transmision }}</p>
+          <p class="card-text">{{ item.peso }}</p>
+          <p class="card-text">{{ item.precio }}</p>
+        </div>
       </div>
     </div>
-    <button
-      class="carousel-control-prev"
-      type="button"
-      data-bs-target="#motoCarouselbet"
-      data-bs-slide="prev"
-    >
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button
-      class="carousel-control-next"
-      type="button"
-      data-bs-target="#motoCarouselbet"
-      data-bs-slide="next"
-    >
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </figure>
-
-  <article class="col-md-6 order-md-1 mt-3 mt-md-0">
-    <h3>HONDA CBR500R</h3>
-    <p><strong>Cilindraje:</strong> 471 cc</p>
-    <p><strong>Motor:</strong> bicilíndrico, DOHC, refrigeración líquida</p>
-    <p><strong>Potencia:</strong> 35 kW (~47 CV) @ 8.600 rpm</p>
-    <p><strong>Transmisión:</strong> Horquilla Showa 41 mm / Pro-Link ajustable de 5 posiciones</p>
-    <p><strong>Peso:</strong> 192 kg en orden de marcha</p>
-    <p class="precio"><strong>Precio estimado:</strong> $24.999.000 COP</p>
-  </article>
-</div>
+  </div>
+  }
+</section>

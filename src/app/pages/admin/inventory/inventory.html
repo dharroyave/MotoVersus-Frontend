@@ -1,16 +1,20 @@
-<h1>Gestión de Productos</h1>
+<h1>GESTIÓN DE PRODUCTOS</h1>
 
 <div class="container border border-black d-flex flex-wrap gap-5 p-4 border-3 rounded-4">
   @for (product of allProducts; track $index) {
   <div>
     <h2 class="fa-bold">{{ product.nombre }}</h2>
-    <p>{{ product.descripcion }}</p>
     <p>{{ product.categoria }}</p>
 
-    <div class="d-flex gap-4">
       <button class="btn btn-info" (click)="updateProductsInfo(product._id)">Actualizar</button>
       <button class="btn btn-danger" (click)="deleteProduct(product._id)">Eliminar</button>
+    
+
+  <!-- 🔸 Formulario solo aparece para el usuario seleccionado -->
+      @if (showUpdateForm && selectedProductId === product._id) {
+        <app-update-form-product [productId]="selectedProductId"></app-update-form-product>
+      }
     </div>
-  </div>
+
   }
 </div>

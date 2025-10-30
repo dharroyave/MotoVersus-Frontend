@@ -2,73 +2,60 @@ import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from '../../../services/users';
 import { User } from '../../../interfaces/user';
 import Swal from 'sweetalert2';
+import { UpdateFormUser } from '../../../components/update-form-user/update-form-user';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-users',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, UpdateFormUser],
   templateUrl: './users.html',
   styleUrl: './users.css'
 })
 
 
 export class Users implements OnInit {
-
-  // 1. injección de dependencias e inicialización de variables
   private _userService = inject(UserService);
-  allUsers: User[] = []; //nos creamos esta variable
+  allUsers: User[] = [];
 
-  // 2. Formgroups y formcontrols que necesite
-  // ...
+  selectedUserId: string | null = null;
+  showUpdateForm = false;
 
-
-  // 3. métodos que le permitan hacer las peticiones y gestionar las respuestas
-  showUsers() {
-    // hace la petición GET
-    this._userService.getUser().subscribe({
-      next: (res : any) => { 
-        console.log(res);
-        this.allUsers = res.data
-        console.log(this.allUsers);
-      },
-      error: (err : any) => { 
-        console.error(err)
-      }
-    });
+  ngOnInit(): void {
+    this.showUsers();
   }
 
-  deleteUser(id: string) {
-    // Hace la petición DELETE
-    console.log('Id del usuario a eliminar: ', id)
+ showUsers() {
+  this._userService.getUser().subscribe({
+    next: (res: any) => {
+      console.log('Respuesta completa del backend:', res);
+      // observa qué propiedad realmente contiene los usuarios
+      this.allUsers = res.data || res.users || res; 
+      console.log('Usuarios asignados:', this.allUsers);
+    },
+    error: (err: any) => {
+      console.error('Error al obtener usuarios:', err);
+    }
+  });
+}
 
+
+  deleteUser(id: string) {
     this._userService.deleteUser(id).subscribe({
       next: (res: any) => {
-        console.log(res);
         Swal.fire({
           title: 'Usuario eliminado',
           text: res.mensaje,
-          icon: "success"
-        }).then(()=>{
-          this.showUsers();
-        })
-       },
-      error: (err: any) => { 
-        console.error(err)
-      }
-    })
-
+          icon: 'success'
+        }).then(() => this.showUsers());
+      },
+      error: (err: any) => console.error('Error al eliminar usuario:', err)
+    });
   }
 
   updateUsersInfo(id: string) {
-    // Hace la petición PUT
-    // ... tomar como referencia el registro de usuarios
-    console.log('Id del usuario a editar: ', id)
+    this.selectedUserId = id;
+    this.showUpdateForm = true;
   }
-
-
-  ngOnInit(): void {
-      this.showUsers();
-      // pone o llama todos los métodos y la logica que quiera que se ejecute al cargar un componente por primera vez
-  }
-
 }
