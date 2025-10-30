@@ -4,11 +4,12 @@ import { Credentials } from '../interfaces/credentials';
 import { environment } from '../../environments/environment';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {  
+export class LoginService {
   //1. inyectar y definir variables
   private _httpClient = inject(HttpClient);
   private _router = inject(Router);
@@ -16,49 +17,50 @@ export class LoginService {
 
   // 2. desarrollo logica del servicio
   // 2.1. Petición POST
-  login(loginCredentials : Credentials){
-    return this._httpClient.post(`${this.apiUrl}/login`,loginCredentials);
+  login(loginCredentials: Credentials) {
+    return this._httpClient.post(`${this.apiUrl}/login`, loginCredentials);
   }
 
   // 2.2. Obtención del Token
-  getToken(){
+  getToken() {
     return localStorage.getItem('token');
   }
 
   // 2.3. Validación Rol Admon
-  isAdmin(){
+  isAdmin() {
     const token = this.getToken();
-    if(token){
-      const decode : any =jwtDecode(token);
+    if (token) {
+      const decode: any = jwtDecode(token);
       return decode.admin === true ? true : false
-    }else{
+    } else {
       console.log('No Registra token')
       return false;
     }
   }
-  
+
   // 2.4. Redirecciona al Iniciar Sesión
-  redirectTo(){
-    if(this.isAdmin()){
+  redirectTo() {
+    if (this.isAdmin()) {
       this._router.navigate(['/admin']);
-    }else{
+    } else {
       this._router.navigate(['/']);
     }
   }
 
   // 2.5. Cierre de Sesión
-  logout(){
+  logout() {
     localStorage.removeItem('token');
-    alert('Sesión Cerrada con Exito, Vuelve pronto!')
+    localStorage.removeItem('usuarioId');
+    Swal.fire('✅ Éxito', 'Sesión Cerrada con Exito, Vuelve pronto!', 'success');
     this._router.navigate(['/login']);
   }
 
-  
+
   // 6. para saber si se inició sesión o no
-  isLoggedIn(){
+  isLoggedIn() {
     return this.getToken() ? true : false;
   }//si no hay token, no esta logueado, si sí lo hay, entonces sí inició sesión
 
-  
+
 }
 
