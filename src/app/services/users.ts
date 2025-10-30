@@ -13,7 +13,7 @@ export class UserService {
   // metodos para hacer las peticiones a la api
 
   //peticion post
-  postUser(userToCreate: User) {
+  postUser(userToCreate: FormData) {
     return this._httpClient.post(`${this.apiUrl}/users/crear`, userToCreate);
   }
 
@@ -33,7 +33,7 @@ export class UserService {
 
 
   // peticion put
-  putUser(userToUpdate: User, id: string) {
+  putUser(userToUpdate: FormData, id: string) {
     return this._httpClient.put(`${this.apiUrl}/users/actualizar/${id}`, userToUpdate);
   }
 

@@ -51,38 +51,38 @@ export class UpdateFormUser implements OnInit {
     }
   }
 
-  handleSubmit() {
-    if (!this.userId) return;
+//   handleSubmit() {
+//     if (!this.userId) return;
 
-    const userData: User = {
-      _id: this.userId,
-      nombre: this.registerForm.value.name || '',
-      apellido: this.registerForm.value.lastname || '',
-      user: this.registerForm.value.username || '',
-      correo: this.registerForm.value.email || '',
-      numero: this.registerForm.value.number || 0,
-      contrasena: this.registerForm.value.password || '',
-      fotoPerfil: this.registerForm.value.photo || '',
-      role: 'user'
-    };
+//     const userData: User = {
+//       _id: this.userId,
+//       nombre: this.registerForm.value.name || '',
+//       apellido: this.registerForm.value.lastname || '',
+//       user: this.registerForm.value.username || '',
+//       correo: this.registerForm.value.email || '',
+//       numero: this.registerForm.value.number || 0,
+//       contrasena: this.registerForm.value.password || '',
+//       fotoPerfil: this.registerForm.value.photo || '',
+//       role: 'user'
+//     };
 
-    this._userService.putUser(userData, this.userId).subscribe({
-      next: (res: any) => {
-        Swal.fire({
-          title: 'Actualizado correctamente',
-          text: res.mensaje,
-          icon: 'success'
-        }).then(() => {
-  location.reload(); 
-});
-      },
-      error: (err: any) => {
-        Swal.fire({
-          title: 'Error',
-          text: err.error.mensaje || 'No se pudo actualizar el usuario',
-          icon: 'error'
-        });
-      }
-    });
-  }
+//     this._userService.putUser(userData, this.userId).subscribe({
+//       next: (res: any) => {
+//         Swal.fire({
+//           title: 'Actualizado correctamente',
+//           text: res.mensaje,
+//           icon: 'success'
+//         }).then(() => {
+//   location.reload(); 
+// });
+//       },
+//       error: (err: any) => {
+//         Swal.fire({
+//           title: 'Error',
+//           text: err.error.mensaje || 'No se pudo actualizar el usuario',
+//           icon: 'error'
+//         });
+//       }
+//     });
+//   }
 }
