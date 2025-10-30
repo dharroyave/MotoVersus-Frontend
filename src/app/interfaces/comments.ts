@@ -1,6 +1,11 @@
 export interface Comments {
-    texto: string;
-    usuario: string; 
-    fecha: Date;
-   
+  _id: string;
+  texto: string;
+  usuario: {
+    _id: string;
+    nombre: string;
+    fotoPerfil: string;
+  };
+  fecha: string | Date;
+  __v?: number;
 }

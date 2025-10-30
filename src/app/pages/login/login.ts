@@ -42,26 +42,32 @@ export class Login {
           //guardar el token en el local storage
           localStorage.setItem('token', res.token);
           console.log("token guardado", res.token);
-          Swal.fire({
-            title: "Excelente!",
-            icon: "success",
-            text: res.mensaje,
-            draggable: true
-          }).then(() => {
-            // this.router.navigate(['/admin']);
-            this._loginService.redirectTo();
-          })
-        }
-      },
-      error: (err: any) => {
-        console.error('Error en login', err.error.mensaje);
-        Swal.fire({
-          title: "Oops!",
-          icon: "error",
-          draggable: true
-        });
-      }
 
-    });
+          if (res) {
+            localStorage.setItem('usuarioId', res._id);
+            console.log('ID de usuario guardado:', res._id);
+          }
+
+            Swal.fire({
+              title: "Excelente!",
+              icon: "success",
+              text: res.mensaje,
+              draggable: true
+            }).then(() => {
+              // this.router.navigate(['/admin']);
+              this._loginService.redirectTo();
+            })
+          }
+        },
+        error: (err: any) => {
+          console.error('Error en login', err.error.mensaje);
+          Swal.fire({
+            title: "Oops!",
+            icon: "error",
+            draggable: true
+          });
+        }
+
+      });
   }
 }
