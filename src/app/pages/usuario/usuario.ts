@@ -5,7 +5,7 @@ import { CommentCreate } from '../../components/comment-create/comment-create';
 
 @Component({
   selector: 'app-usuario',
-  imports: [Profil, CommentsComponent, CommentCreate],
+  imports: [Profil],
   templateUrl: './usuario.html',
   styleUrl: './usuario.css'
 })

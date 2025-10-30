@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CommentsService } from '../../services/comments';
-import { Comments } from '../../interfaces/comments';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -47,7 +46,7 @@ export class CommentCreate implements OnInit {
     }
 
     if (!this.userId) {
-      Swal.fire('Error', 'No se encontró el usuario', 'error');
+      Swal.fire('Error', 'Por favor, inicia sesión para dejar tu comentario.', 'error');
       return;
     }
 
