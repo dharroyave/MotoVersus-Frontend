@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, Input } from '@angular/core';
 import { ProductService } from '../../services/products';
 import { Product } from '../../interfaces/product';
 import { environment } from '../../../environments/environment';
@@ -10,30 +10,45 @@ import { environment } from '../../../environments/environment';
   styleUrl: './card.css',
 })
 export class Card implements OnInit {
-  // 1. la inyección de dependencias y declaración de variables
   _productService = inject(ProductService);
-  // variable
-  allProducts: Product[] = []; //vamos a almacenar todos los productos de la base de datos
+  allProducts: Product[] = [];
   baseUrl: string = environment.appUrl;
 
-  showProducts() {
-    //1. voy a hacer la peticion get
-    //2. voy a guardar los productos en mi variable all products
-    //3. voy a mostrarlos en mi navegador
+  @Input() categoriaFiltro: string = '';
+
+  ngOnInit(): void {
+    this.loadProducts();
+  }
+
+  // Cargar productos según la categoría
+  loadProducts() {
+    if (this.categoriaFiltro) {
+      this.showProductsByCategory(this.categoriaFiltro);
+    } else {
+      this.showAllProducts();
+    }
+  }
+
+  // Traer todos los productos
+  showAllProducts() {
     this._productService.getProduct().subscribe({
-      // manejo de errores -> gestion de respuestas del back
       next: (response: any) => {
         this.allProducts = response.data;
-        console.log(this.allProducts);
-      }, //respuestas positivas del back
-      error: (error: any) => {
-        console.error(error);
-      }, //respuestas de error del back
+        console.log('Todos los productos:', this.allProducts);
+      },
+      error: (error: any) => console.error(error)
     });
   }
 
-  ngOnInit(): void {
-    // ejecute una accion al cargarse por primera vez en el navegador
-    this.showProducts();
+  // Traer productos por categoría
+  showProductsByCategory(categoria: string) {
+    this._productService.getProductByCategory(categoria).subscribe({
+      next: (response: any) => {
+        this.allProducts = response.data;
+        console.log(`Productos filtrados por ${categoria}:`, this.allProducts);
+      },
+      error: (error: any) => console.error(error)
+    });
   }
 }
+ 
