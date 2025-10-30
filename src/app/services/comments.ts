@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Comments } from '../interfaces/comments';
 import { environment } from '../../environments/environment';
 
@@ -13,22 +14,29 @@ export class CommentsService {
   // metodos para hacer las peticiones a la api
 
   //peticion post
-  postComments(commentsToCreate: Comments) {
-    return this._httpClient.post(`${this.apiUrl}/comments/crear`, commentsToCreate);
+  postComments(commentToCreate: Comments): Observable<Comments> {
+    return this._httpClient.post<Comments>(`${this.apiUrl}/comments/crear`, commentToCreate);
   }
 
   //peticion get
-  getComments() {
-    return this._httpClient.get(`${this.apiUrl}/comments/mostrar`);
+  getComments(): Observable<{ mensaje: string; data: Comments[] }> {
+    return this._httpClient.get<{ mensaje: string; data: Comments[] }>(
+      `${this.apiUrl}/comments/mostrar`
+    );
+  }
+
+  // peticion get por usuario
+  getCommentsByUser(userId: string): Observable<Comments[]> {
+    return this._httpClient.get<Comments[]>(`${this.apiUrl}/comments/usuario/${userId}`);
   }
 
   // peticion put
-  putComments(commentsToUpdate: Comments, id: string) {
-    return this._httpClient.put(`${this.apiUrl}/comments/actualizar/${id}`, commentsToUpdate);
+  putComments(commentToUpdate: Comments, id: string): Observable<Comments> {
+    return this._httpClient.put<Comments>(`${this.apiUrl}/comments/actualizar/${id}`, commentToUpdate);
   }
 
   // peticion delete
-  deleteComments(id: string) {
-    return this._httpClient.delete(`${this.apiUrl}/comments/eliminar/${id}`);
+  deleteComments(id: string): Observable<{ message: string }> {
+    return this._httpClient.delete<{ message: string }>(`${this.apiUrl}/comments/eliminar/${id}`);
   }
 }

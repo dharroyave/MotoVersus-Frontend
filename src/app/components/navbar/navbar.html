@@ -14,7 +14,7 @@
 
         <div class="collapse navbar-collapse " id="navbarScroll">
             <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                <li class="nav-item">
+                <li  *ngIf="showProfile" class="nav-item">
                     <a class="nav-link active color-Letter" aria-current="page" routerLink="/usuario">Perfil</a>
                 </li>
                 <li class="nav-item dropdown">
@@ -41,11 +41,14 @@
                 <li class="nav-item">
                     <a class="nav-link active color-Letter" aria-current="page" routerLink="/about">Nosotros</a>
                 </li>
-                <li class="nav-item">
+                <li *ngIf="showLogin" class="nav-item">
                     <a class="nav-link active color-Letter" aria-current="page" routerLink="/register">Registrate</a>
                 </li>
-                <li class="nav-item ">
+                <li *ngIf="showLogin" class="nav-item ">
                     <a class="nav-link active color-Letter" aria-current="page" routerLink="/login">Inicia sesión</a>
+                </li>
+                <li *ngIf="showProfile" class="nav-item ">
+                    <a class="nav-link active color-Letter" aria-current="page" role="button" (click)="logout()">Salir ⌦</a>
                 </li>
             </ul>
         </div>
