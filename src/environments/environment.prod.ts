@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    appUrl: 'https://nuestro-futuro-dominio.dev',
+    appUrl: 'https://motoversus.duckdns.org',
 }
